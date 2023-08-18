@@ -4,6 +4,12 @@ from pydantic import BaseModel
 
 import mysql.connector
 from dotenv import dotenv_values
+import os
+
+script_dir = os.path.dirname(__file__)  # Get the directory of your script
+dotenv_path = os.path.join(script_dir, ".env")
+db_config = dotenv_values(dotenv_path)
+
 
 description = """
 Energética Coop's API for cooperative users, clients and services ⚡
@@ -33,7 +39,6 @@ class CheckCooperativeUserOut(BaseModel):
 
 def check_cooperative_member(dni: str) -> bool:
 
-    db_config = dotenv_values(".env")
     try:
         # Establish a connection to the database
         connection = mysql.connector.connect(**db_config)
@@ -48,8 +53,6 @@ def check_cooperative_member(dni: str) -> bool:
 
             # Fetch the result
             count_result = cursor.fetchone()[0]
-
-            print(f"Count of identificadorfiscal: {count_result}")
 
     except mysql.connector.Error as e:
         print("Error:", e)
