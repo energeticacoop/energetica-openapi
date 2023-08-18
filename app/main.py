@@ -20,3 +20,8 @@ app = FastAPI(
 )
 
 app.include_router(users.router)
+
+
+@app.get("/")
+async def read_main():
+    return {"msg": "Greetings from Energética Coop!"}
