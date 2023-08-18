@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from routers import users
 
 description = """
-Energética Coop's API for cooperative users, clients and services ⚡
+⚡ Energética Coop's API for cooperative users, clients and services ⚡
 """
 
 tags_metadata = [
