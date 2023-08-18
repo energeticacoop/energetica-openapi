@@ -35,7 +35,7 @@ class CheckCooperativeUserOut(BaseModel):
 def check_cooperative_member(dni: str) -> bool:
 
     db_config = dotenv_values(".env")
-
+    count_result = 0
     try:
         # Establish a connection to the database
         connection = mysql.connector.connect(**db_config)
