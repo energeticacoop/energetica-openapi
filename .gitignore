@@ -5,3 +5,6 @@ __pycache__/
 
 # Ignore .env file
 .env
+
+# Ignore local deployment script
+deploy

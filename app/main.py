@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routers import users
+from routers import utils
 
 description = """
 ⚡ Energética Coop's API for cooperative users, clients and services ⚡
@@ -9,6 +10,10 @@ tags_metadata = [
     {
         "name": "users",
         "description": "Operations with users, both cooperative members and clients",
+    },
+    {
+        "name": "utils",
+        "description": "Varied endpoints for special operations in PV studies",
     },
     {
         "name": "root",
@@ -25,6 +30,7 @@ app = FastAPI(
 )
 
 app.include_router(users.router, tags=["users"])
+app.include_router(utils.router, tags=["utils"])
 
 
 @app.get("/", tags=["root"])
