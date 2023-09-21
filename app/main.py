@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import users
-from routers import utils
+from routers import users, utils, root
 
 description = """
 ⚡ Energética Coop's API for cooperative users, clients and services ⚡
@@ -44,8 +43,4 @@ app.add_middleware(
 
 app.include_router(users.router, tags=["users"])
 app.include_router(utils.router, tags=["utils"])
-
-
-@app.get("/", tags=["root"])
-async def read_main():
-    return {"msg": "Greetings from Energética Coop!"}
+app.include_router(root.router, tags=["root"])

@@ -8,3 +8,6 @@ __pycache__/
 
 # Ignore local deployment script
 deploy
+
+# Ignore sensitive files
+files/Modelo Memoria RITE.pdf
