@@ -10,4 +10,4 @@ __pycache__/
 deploy
 
 # Ignore sensitive files
-files/Modelo Memoria RITE.pdf
+Modelo Memoria RITE.pdf
