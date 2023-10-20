@@ -1,12 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import users, utils, root
+from routers import openData, users, utils, root
 
 description = """
 ⚡ Energética Coop's API for cooperative users, clients and services ⚡
 """
 
 tags_metadata = [
+    {
+        "name": "open data",
+        "description": "Open Data for the cooperative",
+    },
     {
         "name": "users",
         "description": "Operations with users, both cooperative members and clients",
@@ -24,7 +28,7 @@ tags_metadata = [
 app = FastAPI(
     openapi_url="/api/v1/openapi.json",
     title="Energética Coop API",
-    version="0.0.1",
+    version="0.0.2",
     description=description,
     openapi_tags=tags_metadata
 )
@@ -41,6 +45,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(openData.router, tags=["open data"])
 app.include_router(users.router, tags=["users"])
 app.include_router(utils.router, tags=["utils"])
 app.include_router(root.router, tags=["root"])
