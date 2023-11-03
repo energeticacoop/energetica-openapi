@@ -11,7 +11,7 @@ router = APIRouter()
 @router.post("/fill-rite-form/", tags=["utils"])
 async def fill_form_endpoint(data: ReplacementValues):
     form_model_path = os.path.dirname(os.path.abspath(
-        __file__)) + "/../files/Modelo Memoria RITE.pdf"
+        __file__)) + "/../files/Modelo_Memoria_RITE.pdf"
     try:
         replacement_values = data.data
 
