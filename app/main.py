@@ -1,3 +1,4 @@
+# import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import openData, users, utils, root
@@ -49,3 +50,7 @@ app.include_router(openData.router, tags=["open data"])
 app.include_router(users.router, tags=["users"])
 app.include_router(utils.router, tags=["utils"])
 app.include_router(root.router, tags=["root"])
+
+# For local testing
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
