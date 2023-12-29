@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from fastapi.responses import FileResponse
 from pypdf import PdfReader, PdfWriter
-from models.utils import ReplacementValues
+from models.utils import RiteReplacementValues, MgeReplacementValues
 import os
 
 router = APIRouter()
@@ -32,7 +32,7 @@ def fill_form(form_model_path: str, output_filename: str, replacement_value_open
 
 
 @router.post("/fill-rite-form/", tags=["utils"])
-async def fill_form_rite_endpoint(data: ReplacementValues):
+async def fill_form_rite_endpoint(data: RiteReplacementValues):
     form_model_path = os.path.dirname(os.path.abspath(
         __file__)) + "/../files/Modelo_Memoria_RITE.pdf"
     replacement_value_opening_character = "{"
@@ -40,7 +40,7 @@ async def fill_form_rite_endpoint(data: ReplacementValues):
 
 
 @router.post("/fill-mge-form/", tags=["utils"])
-async def fill_form_mge_endpoint(data: ReplacementValues):
+async def fill_form_mge_endpoint(data: MgeReplacementValues):
     form_model_path = os.path.dirname(os.path.abspath(
         __file__)) + "/../files/Certificado_final_MGE.pdf"
     replacement_value_opening_character = "<"
