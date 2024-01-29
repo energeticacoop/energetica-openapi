@@ -6,6 +6,7 @@ __pycache__/
 # Ignore .env file
 .env
 .env.db
+.env.cels.db
 .env.googleapikey
 
 # Ignore local deployment script

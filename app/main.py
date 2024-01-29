@@ -1,7 +1,7 @@
-# import uvicorn
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import openData, users, utils, root
+from routers import openData, users, communities, utils, root
 
 description = """
 ⚡ Energética Coop's API for cooperative users, clients and services ⚡
@@ -15,6 +15,10 @@ tags_metadata = [
     {
         "name": "users",
         "description": "Operations with users, both cooperative members and clients",
+    },
+    {
+        "name": "communities",
+        "description": "Operations with energy communities",
     },
     {
         "name": "utils",
@@ -48,9 +52,10 @@ app.add_middleware(
 
 app.include_router(openData.router, tags=["open data"])
 app.include_router(users.router, tags=["users"])
+app.include_router(communities.router, tags=["communities"])
 app.include_router(utils.router, tags=["utils"])
 app.include_router(root.router, tags=["root"])
 
 # For local testing
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8001)

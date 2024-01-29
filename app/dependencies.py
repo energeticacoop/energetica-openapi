@@ -4,12 +4,14 @@ import os
 import requests
 
 script_dir = os.path.dirname(__file__)
-db_config = dotenv_values(os.path.join(script_dir, ".env.db"))
+energetica_db_config = dotenv_values(os.path.join(script_dir, ".env.db"))
+cels_db_config = dotenv_values(os.path.join(script_dir, ".env.cels.db"))
 google_api_key = dotenv_values(os.path.join(script_dir, ".env.googleapikey"))[
     "GOOGLE_API_KEY"]
 
 
-def get_db_connection():
+def get_db_connection(database):
+    db_config = cels_db_config if database == "cels" else energetica_db_config
     try:
         connection = mysql.connector.connect(**db_config)
         return connection
@@ -18,15 +20,16 @@ def get_db_connection():
         return None
 
 
-def get_db_query_result(sql_query):
-    connection = get_db_connection()
+def get_db_query_result(sql_query, database="energetica"):
+    connection = get_db_connection(database)
     if connection is None:
         return False
 
     try:
         cursor = connection.cursor()
         cursor.execute(sql_query)
-        result = cursor.fetchone()[0]
+        result = cursor.fetchone(
+        )[0] if database == "energetica" else dict(zip([column[0] for column in cursor.description], cursor.fetchone()))
     except mysql.connector.Error as e:
         print("Error:", e)
         return False
