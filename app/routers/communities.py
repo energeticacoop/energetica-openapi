@@ -2,6 +2,7 @@ from fastapi import APIRouter, Path, HTTPException
 from models.communities import Community
 from pydantic import create_model, TypeAdapter
 from dependencies import get_db_query_result
+import requests
 
 router = APIRouter()
 
@@ -25,3 +26,48 @@ async def get_community(community_id: int) -> Community:
     cel = Community(**cel_data)
     ta = TypeAdapter(Community)
     return ta.validate_python(cel)
+
+
+class CelNotFoundException(Exception):
+    def __init__(self, message="Energy Community not found"):
+        self.message = message
+        super().__init__(self.message)
+
+
+@router.get("/communities/coverage/{community_id}", tags=["communities"])
+async def get_community_coverage(community_id: int) -> float:
+
+    clients_api_url = f"https://gestion.comunidadessolares.org/api/clients?cel={community_id}"
+    cel_api_url = f"https://gestion.comunidadessolares.org/api/cels/{community_id}"
+    try:
+
+        # Send a GET request to the API
+        response = requests.get(cel_api_url)
+        response.raise_for_status()  # This will raise an exception for non-200 status codes
+
+        # Parse the JSON response
+        data = response.json()
+
+        if len(data["data"]) == 0:
+            raise CelNotFoundException("Energy Community does not exist")
+
+        installed_power = float(
+            data["data"]["potencia_instalada"].replace(",", "."))
+
+        # Send a GET request to the API
+        response = requests.get(clients_api_url)
+        response.raise_for_status()  # This will raise an exception for non-200 status codes
+
+        # Parse the JSON response
+        data = response.json()
+        total_contracted_power = sum([float(user["potencia_contratada"].replace(",", "."))
+                                      for user in data["data"]])
+
+        return total_contracted_power/installed_power
+
+    except requests.exceptions.RequestException as e:
+        # Handle general request exceptions
+        raise e
+    except CelNotFoundException as e:
+        # Handle CelNotFoundException and return a specific HTTP response
+        raise HTTPException(status_code=404, detail=str(e))
