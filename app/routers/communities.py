@@ -37,10 +37,10 @@ class CelNotFoundException(Exception):
 @router.get("/communities/coverage/{community_id}", tags=["communities"])
 async def get_community_coverage(community_id: int) -> float:
 
-    clients_api_url = f"https://gestion.comunidadessolares.org/api/clients?cel={
-        community_id}"
-    cel_api_url = f"https://gestion.comunidadessolares.org/api/cels/{
-        community_id}"
+    clients_api_url = f"""https://gestion.comunidadessolares.org/api/clients?cel={
+        community_id}"""
+    cel_api_url = f"""https://gestion.comunidadessolares.org/api/cels/{
+        community_id}"""
     try:
 
         # Send a GET request to the API
