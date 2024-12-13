@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
 from typing import Annotated, Any
-from app.connections import get_db_query_result
+from connections import get_db_query_result
 from models.users import CheckCooperativeUserOut
 
 router = APIRouter()

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models.openData import NumericDataResponse
-from app.connections import get_db_query_result, get_json_from_google_spreadsheet_api
+from connections import get_db_query_result, get_json_from_google_spreadsheet_api
 import datetime
 
 

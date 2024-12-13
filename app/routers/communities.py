@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Path, HTTPException
 from models.communities import Community
 from pydantic import create_model, TypeAdapter
-from app.connections import get_db_query_result
+from connections import get_db_query_result
 import requests
 
 router = APIRouter()
