@@ -5,16 +5,16 @@ import json
 import requests
 
 
+google_api_key = os.getenv("GOOGLE_API_KEY")
+if not google_api_key:
+    raise ValueError("GOOGLE_API_KEY is not set in the environment variables.")
+
 energetica_db_config_str = os.getenv("ENERGETICA_DB_CONFIG")
 cels_db_config_str = os.getenv("CELS_DB_CONFIG")
 if not energetica_db_config_str or not cels_db_config_str:
     raise ValueError("Database configuration secrets are missing.")
 energetica_db_config = json.loads(energetica_db_config_str)
 cels_db_config = json.loads(cels_db_config_str)
-
-google_api_key = os.getenv("GOOGLE_API_KEY")
-if not google_api_key:
-    raise ValueError("GOOGLE_API_KEY is not set in the environment variables.")
 
 
 
