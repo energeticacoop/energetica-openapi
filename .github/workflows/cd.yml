@@ -36,4 +36,4 @@ jobs:
             --allow-unauthenticated \
             --project energetica-services \
             --max-instances=4 \
-            --update-env-vars GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}"
+            --set-env-vars GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}",ENERGETICA_DB_CONFIG=${{ secrets.ENERGETICA_DB_CONFIG }},CELS_DB_CONFIG=${{ secrets.CELS_DB_CONFIG }}
