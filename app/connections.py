@@ -12,6 +12,7 @@ cels_db_config_b64 = os.getenv("CELS_DB_CONFIG")
 if not energetica_db_config_b64 or not cels_db_config_b64:
     raise ValueError("Database configuration secrets are missing.")
 
+
 # Decode Base64 strings and parse as JSON
 energetica_db_config = json.loads(base64.b64decode(energetica_db_config_b64).decode("utf-8"))
 cels_db_config = json.loads(base64.b64decode(cels_db_config_b64).decode("utf-8"))
