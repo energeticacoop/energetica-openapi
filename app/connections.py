@@ -3,6 +3,7 @@ from dotenv import dotenv_values
 import os
 import json
 import requests
+import base64
 
 
 energetica_db_config_str = os.getenv("ENERGETICA_DB_CONFIG")
