@@ -26,3 +26,6 @@ jobs:
 
       - name: Push docker image to Google Artifact Registry
         run: gcloud builds submit --tag europe-southwest1-docker.pkg.dev/energetica-services/energetica-api/energetica-api:latest
+
+      - name: Deploy to Cloud Run
+        run: gcloud run deploy energetica-api-run --image europe-southwest1-docker.pkg.dev/energetica-services/energetica-api/energetica-api:latest --region europe-southwest1 --allow-unauthenticated --project energetica-services --max-instances=4
