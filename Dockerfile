@@ -16,5 +16,5 @@ COPY ./app /code/app
 # Set the working directory to /code/app
 WORKDIR /code/app
 
-# Start the FastAPI application using uvicorn
-CMD ["uvicorn", "main:app", "--reload", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+# Start the FastAPI application
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]

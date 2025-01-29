@@ -1,22 +1,22 @@
-import mysql.connector
-from dotenv import dotenv_values
-import os
-import json
-import requests
 import base64
+import json
+import os
 
+import mysql.connector
+import requests
 
 energetica_db_config_b64 = os.getenv("ENERGETICA_DB_CONFIG")
 cels_db_config_b64 = os.getenv("CELS_DB_CONFIG")
 if not energetica_db_config_b64 or not cels_db_config_b64:
     raise ValueError("Database configuration secrets are missing.")
-energetica_db_config = json.loads(base64.b64decode(energetica_db_config_b64).decode("utf-8"))
-cels_db_config = json.loads(base64.b64decode(cels_db_config_b64).decode("utf-8"))
+energetica_db_config = json.loads(base64.b64decode(
+    energetica_db_config_b64).decode("utf-8"))
+cels_db_config = json.loads(base64.b64decode(
+    cels_db_config_b64).decode("utf-8"))
 
 google_api_key = os.getenv("GOOGLE_API_KEY")
 if not google_api_key:
     raise ValueError("GOOGLE_API_KEY is not set in the environment variables.")
-
 
 
 def get_db_connection(database):
@@ -50,7 +50,8 @@ def get_db_query_result(sql_query, database="energetica"):
 
 
 def get_json_from_google_spreadsheet_api(spreadsheet_id, named_range):
-    api_url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{named_range}?key={google_api_key}'
+    api_url = f'https://sheets.googleapis.com/v4/spreadsheets/{
+        spreadsheet_id}/values/{named_range}?key={google_api_key}'
     try:
         # Send a GET request to the API
         response = requests.get(api_url)

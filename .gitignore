@@ -15,6 +15,9 @@ deploy
 # Ignore VS Code settings file
 .vscode
 
+# Ignore virtual environment
+.venv
+
 # Ignore sensitive files
 Modelo_Memoria_RITE.pdf
 Certificado_final_MGE.pdf

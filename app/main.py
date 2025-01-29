@@ -1,7 +1,7 @@
-import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import openData, users, communities, utils, root, health
+
+from app.routers import communities, openData, users, utils, root, health
 
 description = """
 ⚡ Energética Coop's API for cooperative users, clients and services ⚡
@@ -60,7 +60,3 @@ app.include_router(communities.router, tags=["communities"])
 app.include_router(utils.router, tags=["utils"])
 app.include_router(root.router, tags=["root"])
 app.include_router(health.router, tags=["health"])
-
-# For local testing
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8001)

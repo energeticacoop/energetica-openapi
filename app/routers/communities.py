@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Path, HTTPException
-from models.communities import Community
-from pydantic import create_model, TypeAdapter
-from connections import get_db_query_result
 import requests
+from fastapi import APIRouter, HTTPException
+from pydantic import TypeAdapter, create_model
+
+from app.connections import get_db_query_result
+from app.models.communities import Community
 
 router = APIRouter()
 

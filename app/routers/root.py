@@ -4,5 +4,5 @@ router = APIRouter()
 
 
 @router.get("/", tags=["root"])
-async def read_main():
+async def root():
     return {"msg": "Greetings from Energética Coop!"}

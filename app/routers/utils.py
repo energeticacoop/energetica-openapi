@@ -1,9 +1,10 @@
-from fastapi import APIRouter
+import os
 
+from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from pypdf import PdfReader, PdfWriter
-from models.utils import RiteReplacementValues, MgeReplacementValues
-import os
+
+from app.models.utils import MgeReplacementValues, RiteReplacementValues
 
 router = APIRouter()
 
