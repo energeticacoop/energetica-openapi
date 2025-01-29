@@ -2,7 +2,11 @@ name: Deployement
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - "app/**" # Only run if changes occur in the app folder
+      - ".github/workflows/deploy.yml" # Also run if the workflow file changes
 
 jobs:
   deploy:
