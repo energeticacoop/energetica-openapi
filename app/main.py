@@ -26,14 +26,18 @@ tags_metadata = [
     },
     {
         "name": "root",
-        "description": "A useless endpoint with a message",
+        "description": "A greeting message",
+    },
+    {
+        "name": "health",
+        "description": "Endpoints for checking the API's health and system status",
     },
 ]
 
 app = FastAPI(
     openapi_url="/api/v1/openapi.json",
     title="Energética Coop API",
-    version="0.0.2",
+    version="0.0.3"
     description=description,
     openapi_tags=tags_metadata
 )
@@ -55,6 +59,7 @@ app.include_router(users.router, tags=["users"])
 app.include_router(communities.router, tags=["communities"])
 app.include_router(utils.router, tags=["utils"])
 app.include_router(root.router, tags=["root"])
+app.include_router(root.router, tags=["health"])
 
 # For local testing
 if __name__ == "__main__":
