@@ -17,4 +17,4 @@ COPY ./app /code/app
 WORKDIR /code/app
 
 # Start the FastAPI application
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+CMD ["fastapi", "run", "main.py", "--port", "80"]
