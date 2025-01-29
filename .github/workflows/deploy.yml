@@ -7,6 +7,7 @@ on:
     paths:
       - "app/**" # Only run if changes occur in the app folder
       - ".github/workflows/deploy.yml" # Also run if the workflow file changes
+      - "Dockerfile" # Also run if the Dockerfile changes
 
 jobs:
   deploy:
