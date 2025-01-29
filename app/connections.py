@@ -50,8 +50,8 @@ def get_db_query_result(sql_query, database="energetica"):
 
 
 def get_json_from_google_spreadsheet_api(spreadsheet_id, named_range):
-    api_url = f'https://sheets.googleapis.com/v4/spreadsheets/{
-        spreadsheet_id}/values/{named_range}?key={google_api_key}'
+    api_url = f'''https://sheets.googleapis.com/v4/spreadsheets/{
+        spreadsheet_id}/values/{named_range}?key={google_api_key}'''
     try:
         # Send a GET request to the API
         response = requests.get(api_url)
