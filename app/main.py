@@ -37,7 +37,7 @@ tags_metadata = [
 app = FastAPI(
     openapi_url="/api/v1/openapi.json",
     title="Energética Coop API",
-    version="0.0.3"
+    version="0.0.3",
     description=description,
     openapi_tags=tags_metadata
 )
