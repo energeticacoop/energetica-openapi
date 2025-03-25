@@ -76,8 +76,6 @@ FastAPI automatically generates interactive API documentation. Access it at:
 
 ## 🤝 Contributing
 
-We welcome contributions! To contribute:
-
 1. **Fork the repository:**
 
    ```sh
