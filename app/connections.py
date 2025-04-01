@@ -1,19 +1,15 @@
-import base64
-import json
-import os
-
 import mysql.connector
+from dotenv import dotenv_values
+import os
+import json
 import requests
 
-energetica_db_config_b64 = os.getenv("ENERGETICA_DB_CONFIG")
-cels_db_config_b64 = os.getenv("CELS_DB_CONFIG")
-if not energetica_db_config_b64 or not cels_db_config_b64:
+energetica_db_config_str = os.getenv("ENERGETICA_DB_CONFIG")
+cels_db_config_str = os.getenv("CELS_DB_CONFIG")
+if not energetica_db_config_str or not cels_db_config_str:
     raise ValueError("Database configuration secrets are missing.")
-energetica_db_config = json.loads(base64.b64decode(
-    energetica_db_config_b64).decode("utf-8"))
-cels_db_config = json.loads(base64.b64decode(
-    cels_db_config_b64).decode("utf-8"))
-
+energetica_db_config = json.loads(energetica_db_config_str)
+cels_db_config = json.loads(cels_db_config_str)
 google_api_key = os.getenv("GOOGLE_API_KEY")
 if not google_api_key:
     raise ValueError("GOOGLE_API_KEY is not set in the environment variables.")
